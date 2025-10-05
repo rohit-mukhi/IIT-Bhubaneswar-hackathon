@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoe Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 80px;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo { font-size: 1.8rem; font-weight: bold; color: #111; }
+    .logo span { color: #ff5c35; }
+    .nav-links { display: flex; list-style: none; gap: 30px; }
+    .nav-links a {
+      text-decoration: none; color: #333; font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: #ff5c35; }
+    .cart img { width: 28px; cursor: pointer; }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 80px 10%;
+      background-color: #f0fff9;
+      gap: 40px;
+    }
+    .hero-content h4 { color: #ff5c35; font-weight: 600; margin-bottom: 10px; }
+    .hero-content h1 { font-size: 2.8rem; margin-bottom: 20px; }
+    .hero-content h1 span { color: #ff5c35; }
+    .hero-content p { margin-bottom: 25px; color: #555; }
+    .btn {
+      background-color: #ff5c35; color: white; border: none;
+      padding: 12px 25px; border-radius: 30px; font-size: 1rem;
+      cursor: pointer; transition: 0.3s;
+    }
+    .btn:hover { background-color: #e14e2e; }
+    .hero-image img { width: 400px; border-radius: 15px; }
+
+    /* Product Detail */
+    .main-content {
+      display: flex;
+      gap: 50px;
+      padding: 80px 10%;
+      flex-wrap: wrap;
+    }
+    .image-section { flex: 0 0 45%; }
+    .product-image img {
+      width: 100%; border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .thumbnail-gallery {
+      display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;
+    }
+    .thumbnail {
+      width: 70px; height: 70px; object-fit: cover;
+      border-radius: 10px; cursor: pointer;
+      border: 2px solid transparent; transition: all 0.3s;
+    }
+    .thumbnail.active { border-color: #ff5c35; transform: scale(1.05); }
+
+    .content-section { flex: 1; display: flex; flex-direction: column; }
+    .product-title { font-size: 2rem; margin-bottom: 10px; color: #111; }
+    .product-description { color: #555; margin-bottom: 20px; }
+
+    .price-section {
+      display: flex; align-items: center; gap: 15px; margin-bottom: 25px;
+    }
+    .current-price { font-size: 2rem; font-weight: bold; color: #ff5c35; }
+    .original-price { text-decoration: line-through; color: #999; }
+    .discount-badge {
+      background: #ff5c35; color: #fff; padding: 3px 8px;
+      border-radius: 5px; font-size: 0.9rem;
+    }
+
+    .selection-group h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .size-options, .color-options {
+      display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .size-btn {
+      padding: 8px 16px; border: 2px solid #ddd; border-radius: 8px;
+      cursor: pointer; transition: 0.3s;
+    }
+    .size-btn.active { background: #ff5c35; color: #fff; border-color: #ff5c35; }
+    .size-btn:hover { border-color: #ff5c35; }
+
+    .color-btn {
+      width: 35px; height: 35px; border-radius: 50%;
+      border: 2px solid transparent; cursor: pointer; transition: 0.3s;
+    }
+    .color-btn.active { border-color: #ff5c35; box-shadow: 0 0 0 2px #ff5c35; }
+
+    .quantity-controls { display: flex; align-items: center; gap: 10px; }
+    .qty-btn {
+      width: 40px; height: 40px; border: 2px solid #ddd; border-radius: 8px;
+      cursor: pointer; background: #fff; transition: 0.3s;
+    }
+    .qty-btn:hover { background: #ff5c35; color: #fff; border-color: #ff5c35; }
+    #quantity {
+      width: 60px; text-align: center; border: 2px solid #ddd;
+      border-radius: 8px; font-weight: bold; font-size: 1rem;
+    }
+
+    .add-to-bag-btn {
+      padding: 12px 25px; border-radius: 12px;
+      background: #ff5c35; color: #fff; font-weight: bold;
+      cursor: pointer; border: none; transition: 0.3s;
+      margin-bottom: 30px;
+    }
+    .add-to-bag-btn:hover { background: #e14e2e; }
+
+    .product-info { border-top: 1px solid #eee; padding-top: 20px; }
+    .features-list li { margin-bottom: 8px; color: #555; }
+
+    /* Popular Products */
+    .products {
+      padding: 80px 10%; background-color: #f0fff9; text-align: center;
+    }
+    .products h2 { font-size: 2rem; margin-bottom: 40px; }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+    .product-card {
+      background: #fff; padding: 20px; border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .product-card:hover { transform: translateY(-10px); }
+    .product-card img {
+      width: 100%; height: 200px; object-fit: contain; border-radius: 10px;
+    }
+    .product-card h4 { margin: 15px 0 5px; color: #111; }
+    .product-card p { color: #ff5c35; font-weight: 600; }
+
+    /* Footer */
+    .footer {
+      background: #2c3e50; color: white;
+      padding: 3rem 2rem 1rem;
+    }
+    .footer-content {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; margin-bottom: 2rem;
+    }
+    .footer-section h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .footer-section p, .footer-section a { color: #bdc3c7; text-decoration: none; }
+    .footer-section ul { list-style: none; }
+    .footer-section ul li { margin-bottom: 0.5rem; }
+    .footer-section ul li a:hover { color: #ff5c35; }
+    .footer-bottom {
+      text-align: center; padding-top: 2rem;
+      border-top: 1px solid #34495e; color: #bdc3c7;
+    }
+
+    @media (max-width: 968px) {
+      .hero { flex-direction: column; text-align: center; gap: 40px; }
+      .hero-image img { width: 300px; }
+      .main-content { flex-direction: column; gap: 40px; }
+      .image-section, .content-section { flex: 1; }
+      .thumbnail-gallery { justify-content: center; }
+      .navbar { flex-direction: column; padding: 20px 20px; gap: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Shoe<span>Store</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="cart">
+      <img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" alt="Cart">
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h4>Collection 2025</h4>
+      <h1>Look <span>Stylish</span><br>Be <span>Confident</span></h1>
+      <p>Discover premium shoes made for comfort and style. Perfect for every occasion.</p>
+      <button class="btn" onclick="document.querySelector('.products').scrollIntoView({behavior:'smooth'})">
+        Shop Now
+      </button>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1600180758895-65f1f91d0aa0?auto=format&fit=crop&q=80&w=600" alt="Shoe">
+    </div>
+  </section>
+
+  <!-- Product Detail -->
+  <section class="product-detail">
+    <div class="main-content">
+      <div class="image-section">
+        <div class="product-image">
+          <img id="main-img" src="https://images.unsplash.com/photo-1618354691494-7c51bb77d0d2?auto=format&fit=crop&q=80&w=800" alt="Running Shoe">
+        </div>
+        <div class="thumbnail-gallery">
+          <img class="thumbnail active" src="https://images.unsplash.com/photo-1618354691494-7c51bb77d0d2?auto=format&fit=crop&q=80&w=150" onclick="changeImage(this)">
+          <img class="thumbnail" src="https://images.unsplash.com/photo-1618354691231-6a2c4441a7cb?auto=format&fit=crop&q=80&w=150" onclick="changeImage(this)">
+          <img class="thumbnail" src="https://images.unsplash.com/photo-1618354691270-ffbc89e83b15?auto=format&fit=crop&q=80&w=150" onclick="changeImage(this)">
+          <img class="thumbnail" src="https://images.unsplash.com/photo-1618354691301-2a0c4a598c26?auto=format&fit=crop&q=80&w=150" onclick="changeImage(this)">
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="product-title">Running Shoe</h2>
+        <p class="product-description">A premium running shoe designed for comfort, style, and performance.</p>
+        <div class="price-section">
+          <span class="current-price">$120</span>
+          <span class="original-price">$150</span>
+          <span class="discount-badge">20% OFF</span>
+        </div>
+
+        <div class="selection-group">
+          <h3>Select Size</h3>
+          <div class="size-options">
+            <button class="size-btn">7</button>
+            <button class="size-btn">8</button>
+            <button class="size-btn active">9</button>
+            <button class="size-btn">10</button>
+          </div>
+        </div>
+
+        <div class="selection-group">
+          <h3>Select Color</h3>
+          <div class="color-options">
+            <div class="color-btn active" style="background-color:#ff5c35;"></div>
+            <div class="color-btn" style="background-color:#000;"></div>
+            <div class="color-btn" style="background-color:#fff; border:1px solid #ccc;"></div>
+          </div>
+        </div>
+
+        <div class="selection-group">
+          <h3>Quantity</h3>
+          <div class="quantity-controls">
+            <button class="qty-btn" onclick="decreaseQty()">-</button>
+            <input type="text" id="quantity" value="1" readonly>
+            <button class="qty-btn" onclick="increaseQty()">+</button>
+          </div>
+        </div>
+
+        <div class="bag-section">
+          <button class="add-to-bag-btn">Add to Cart</button>
+        </div>
+
+        <div class="product-info">
+          <h3>Product Details</h3>
+          <ul class="features-list">
+            <li>Upper Material: Premium Leather</li>
+            <li>Sole: Rubber for better grip</li>
+            <li>Comfortable cushioning</li>
+            <li>Lightweight and durable</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Products -->
+  <section class="products">
+    <h2>Our Popular Products</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1618354691494-7c51bb77d0d2?auto=format&fit=crop&q=80&w=400" alt="">
+        <h4>Running Shoe</h4><p>$120</p>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1618354691231-6a2c4441a7cb?auto=format&fit=crop&q=80&w=400" alt="">
+        <h4>Casual Sneaker</h4><p>$90</p>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1618354691270-ffbc89e83b15?auto=format&fit=crop&q=80&w=400" alt="">
+        <h4>Leather Boot</h4><p>$140</p>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1618354691301-2a0c4a598c26?auto=format&fit=crop&q=80&w=400" alt="">
+        <h4>Sports Trainer</h4><p>$110</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>About ShoeStore</h3>
+        <p>We provide premium quality shoes for every style and occasion.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 ShoeStore. All rights reserved.</div>
+  </footer>
+
+  <script>
+    function changeImage(el) {
+      document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      const src = el.src.replace(/w=\d+/g, 'w=800');
+      document.getElementById('main-img').src = src;
+    }
+
+    function increaseQty() {
+      const qty = document.getElementById('quantity');
+      qty.value = parseInt(qty.value) + 1;
+    }
+
+    function decreaseQty() {
+      const qty = document.getElementById('quantity');
+      if (parseInt(qty.value) > 1) qty.value = parseInt(qty.value) - 1;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
