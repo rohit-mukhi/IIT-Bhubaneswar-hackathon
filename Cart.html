@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - ShoeStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 80px;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .logo span {
+      color: #ff5c35;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ff5c35;
+    }
+
+    .cart img {
+      width: 28px;
+      cursor: pointer;
+    }
+
+    /* Cart Section */
+    .cart-container {
+      max-width: 1100px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      padding: 40px;
+    }
+
+    .cart-container h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+
+    th {
+      text-align: left;
+      font-weight: 600;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #eee;
+      color: #555;
+    }
+
+    td {
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+    }
+
+    .item-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .item-info img {
+      width: 80px;
+      border-radius: 10px;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: #111;
+    }
+
+    .item-subtext {
+      color: #ff5c35;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .qty-btn:hover {
+      background: #ff5c35;
+      color: #fff;
+      border-color: #ff5c35;
+    }
+
+    .quantity-controls input {
+      width: 45px;
+      text-align: center;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      padding: 5px;
+      font-weight: 600;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #999;
+      transition: color 0.3s;
+    }
+
+    .remove-btn:hover {
+      color: #ff5c35;
+    }
+
+    /* Summary */
+    .summary {
+      text-align: right;
+      padding-top: 20px;
+      border-top: 2px solid #eee;
+    }
+
+    .summary p {
+      margin: 8px 0;
+      font-size: 1rem;
+    }
+
+    .summary .total {
+      font-weight: bold;
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    .free-shipping {
+      text-align: right;
+      color: #28a745;
+      margin-top: 5px;
+      font-weight: 500;
+    }
+
+    .checkout-btn {
+      display: block;
+      margin-left: auto;
+      margin-top: 20px;
+      background: #ff5c35;
+      color: #fff;
+      border: none;
+      padding: 14px 35px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .checkout-btn:hover {
+      background: #e14e2e;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .cart-container {
+        padding: 20px;
+      }
+      .item-info {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      th:nth-child(3), td:nth-child(3) {
+        text-align: left;
+      }
+      .summary {
+        text-align: left;
+      }
+      .checkout-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Shoe<span>Store</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="cart">
+      <img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" alt="Cart">
+    </div>
+  </nav>
+
+  <!-- Cart Section -->
+  <section class="cart-container">
+    <h1>Your Cart (2 items)</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="cart-body">
+        <tr>
+          <td>
+            <div class="item-info">
+              <img src="https://cdn.shopify.com/s/files/1/0603/7837/3648/products/pi-pizza-oven.webp?v=1668699322" alt="Pi Pizza Oven">
+              <div>
+                <div class="item-name">Pi Pizza Oven</div>
+                <div class="item-subtext">(Estimated Ship Date: June 6th)</div>
+              </div>
+            </div>
+          </td>
+          <td>$469.99</td>
+          <td>
+            <div class="quantity-controls">
+              <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+              <input type="text" value="1" readonly>
+              <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+            </div>
+          </td>
+          <td class="item-total">$469.99</td>
+          <td><button class="remove-btn" onclick="removeItem(this)">✕</button></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-info">
+              <img src="https://cdn.shopify.com/s/files/1/0603/7837/3648/products/grill-ultimate-bundle.webp?v=1668699322" alt="Grill Bundle">
+              <div>
+                <div class="item-name">Grill Ultimate Bundle</div>
+              </div>
+            </div>
+          </td>
+          <td>$549.99</td>
+          <td>
+            <div class="quantity-controls">
+              <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+              <input type="text" value="1" readonly>
+              <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+            </div>
+          </td>
+          <td class="item-total">$549.99</td>
+          <td><button class="remove-btn" onclick="removeItem(this)">✕</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="summary">
+      <p>Subtotal: <span id="subtotal">$1,019.98</span></p>
+      <p>Sales Tax: <span id="tax">$102.00</span></p>
+      <p class="total">Grand Total: <span id="grand-total">$1,121.98</span></p>
+      <p class="free-shipping">Congrats, you’re eligible for Free Shipping</p>
+      <button class="checkout-btn">Check Out</button>
+    </div>
+  </section>
+
+  <script>
+    function changeQty(button, delta) {
+      const input = button.parentElement.querySelector('input');
+      let qty = parseInt(input.value);
+      qty = Math.max(1, qty + delta);
+      input.value = qty;
+
+      const row = button.closest('tr');
+      const price = parseFloat(row.children[1].textContent.replace('$', ''));
+      const totalCell = row.querySelector('.item-total');
+      totalCell.textContent = `$${(price * qty).toFixed(2)}`;
+
+      updateTotals();
+    }
+
+    function removeItem(btn) {
+      btn.closest('tr').remove();
+      updateTotals();
+    }
+
+    function updateTotals() {
+      let subtotal = 0;
+      document.querySelectorAll('.item-total').forEach(cell => {
+        subtotal += parseFloat(cell.textContent.replace('$', ''));
+      });
+      const tax = subtotal * 0.1; // 10% tax
+      const grand = subtotal + tax;
+      document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+      document.getElementById('grand-total').textContent = `$${grand.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
