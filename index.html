@@ -13,7 +13,7 @@
         
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+            background: linear-gradient(-45deg, #f8f9fa, #e9ecef, #dee2e6, #ffffff);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -31,13 +31,14 @@
         }
         
         .navbar {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             height: 70px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .nav-container {
@@ -50,7 +51,7 @@
         }
         
         .logo {
-            color: white;
+            color: #343a40;
             font-size: clamp(1.2rem, 3vw, 1.5rem);
             font-weight: bold;
         }
@@ -62,13 +63,13 @@
         }
         
         .nav-menu a {
-            color: white;
+            color: #495057;
             text-decoration: none;
             transition: color 0.3s;
         }
         
         .nav-menu a:hover {
-            color: #ddd;
+            color: #007bff;
         }
         
         .hamburger {
@@ -80,7 +81,7 @@
         .hamburger span {
             width: 25px;
             height: 3px;
-            background: white;
+            background: #495057;
             margin: 3px 0;
             transition: 0.3s;
         }
@@ -95,7 +96,7 @@
                 left: 0;
                 top: 70px;
                 flex-direction: column;
-                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+                background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
                 width: 100%;
                 text-align: left;
                 max-height: 0;
@@ -104,6 +105,7 @@
                 overflow: hidden;
                 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 padding: 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             }
             
             .nav-menu li {
@@ -199,7 +201,7 @@
         
         .products {
             padding: 2rem clamp(1rem, 4vw, 2rem);
-            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+            background: linear-gradient(-45deg, #f8f9fa, #e9ecef, #dee2e6, #ffffff);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -208,7 +210,7 @@
             text-align: center;
             margin-bottom: 2rem;
             font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: white;
+            color: #343a40;
         }
         
         .product-grid {
@@ -220,52 +222,69 @@
         }
         
         .product-card {
-            background: #2c2c54;
+            background: #ffffff;
             border-radius: 10px;
             padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: transform 0.3s;
-            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.6s ease;
+            color: #343a40;
+            opacity: 0;
+            transform: translateY(50px);
+            border: 1px solid #e9ecef;
+        }
+        
+        .product-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .product-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
+        
+        .product-card:nth-child(1) { transition-delay: 0.1s; }
+        .product-card:nth-child(2) { transition-delay: 0.2s; }
+        .product-card:nth-child(3) { transition-delay: 0.3s; }
+        .product-card:nth-child(4) { transition-delay: 0.4s; }
+        .product-card:nth-child(5) { transition-delay: 0.5s; }
+        .product-card:nth-child(6) { transition-delay: 0.6s; }
         
         .product-image {
             width: 100%;
             height: 200px;
-            background: #1a1a2e;
+            background: #f8f9fa;
             border-radius: 8px;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
+            border: 1px solid #e9ecef;
         }
         
         .product-name {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            color: white;
+            color: #343a40;
         }
         
         .product-price {
             font-size: 1.5rem;
-            color: #ff6b6b;
+            color: #007bff;
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
         
         .product-availability {
-            color: #51cf66;
+            color: #28a745;
             font-weight: bold;
             margin-bottom: 1rem;
         }
         
         .product-availability.out-of-stock {
-            color: #ff6b6b;
+            color: #dc3545;
         }
         
         .color-options {
@@ -278,14 +297,14 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            border: 2px solid #555;
+            border: 2px solid #dee2e6;
             cursor: pointer;
         }
         
         .buy-btn {
             width: 100%;
             padding: 0.75rem;
-            background: #16213e;
+            background: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
@@ -295,14 +314,15 @@
         }
         
         .buy-btn:hover {
-            background: #0f3460;
+            background: #0056b3;
         }
         
         footer {
-            background: #1a1a2e;
-            color: white;
+            background: #f8f9fa;
+            color: #495057;
             padding: 3rem 0;
             text-align: center;
+            border-top: 1px solid #e9ecef;
         }
         
         .brands-section h2 {
@@ -359,12 +379,12 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">ShoeStore</div>
+            <div class="logo" style="font-size: 2.5rem; font-weight: 800;">Shoe<span style="color: red;">Store</spanspan></div>
             <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html"></a></li>
+                <li><a href="brand.html">Brands</a></li>
+                <li><a href="Profile.html">Profile</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -378,13 +398,13 @@
         <div class="carousel-container">
             <div class="carousel-slide">
                 <video muted loop>
-                    <source src="assets/addidas.mp4" type="video/mp4">
+                    <source src="assets/addidas(1).mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
             <div class="carousel-slide">
                 <video muted loop>
-                    <source src="assets/addidas(1).mp4" type="video/mp4">
+                    <source src="assets/addidas.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -407,63 +427,72 @@
     <section class="products">
         <h2>Featured Shoes</h2>
         <div class="product-grid">
-            <div class="product-card">
-                <div class="product-image">👟</div>
-                <div class="product-name">Nike Air Max 270</div>
-                <div class="product-price">$150</div>
-                <div class="product-availability">In Stock</div>
-                <div class="color-options">
-                    <div class="color-dot" style="background: #000"></div>
-                    <div class="color-dot" style="background: #fff"></div>
-                    <div class="color-dot" style="background: #e74c3c"></div>
+            <a href="details.html" style="text-decoration: none; color: inherit;">
+                <div class="product-card">
+                    <div class="product-image">👟</div>
+                    <div class="product-name">Nike Air Max 270</div>
+                    <div class="product-price">$150</div>
+                    <div class="product-availability">In Stock</div>
+                    <div class="color-options">
+                        <div class="color-dot" style="background: #000"></div>
+                        <div class="color-dot" style="background: #fff"></div>
+                        <div class="color-dot" style="background: #e74c3c"></div>
+                    </div>
+                    <button class="buy-btn">Add to Cart</button>
                 </div>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
+            </a>
             
-            <div class="product-card">
-                <div class="product-image">👟</div>
-                <div class="product-name">Adidas Ultraboost 22</div>
-                <div class="product-price">$180</div>
-                <div class="product-availability">In Stock</div>
-                <div class="color-options">
-                    <div class="color-dot" style="background: #3498db"></div>
-                    <div class="color-dot" style="background: #2ecc71"></div>
-                    <div class="color-dot" style="background: #f39c12"></div>
+            <a href="details.html" style="text-decoration: none; color: inherit;">
+                <div class="product-card">
+                    <div class="product-image">👟</div>
+                    <div class="product-name">Adidas Ultraboost 22</div>
+                    <div class="product-price">$180</div>
+                    <div class="product-availability">In Stock</div>
+                    <div class="color-options">
+                        <div class="color-dot" style="background: #3498db"></div>
+                        <div class="color-dot" style="background: #2ecc71"></div>
+                        <div class="color-dot" style="background: #f39c12"></div>
+                    </div>
+                    <button class="buy-btn">Add to Cart</button>
                 </div>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
+            </a>
             
-            <div class="product-card">
-                <div class="product-image">👟</div>
-                <div class="product-name">Puma RS-X</div>
-                <div class="product-price">$110</div>
-                <div class="product-availability out-of-stock">Out of Stock</div>
-                <div class="color-options">
-                    <div class="color-dot" style="background: #9b59b6"></div>
-                    <div class="color-dot" style="background: #e67e22"></div>
+            <a href="details.html" style="text-decoration: none; color: inherit;">
+                <div class="product-card">
+                    <div class="product-image">👟</div>
+                    <div class="product-name">Puma RS-X</div>
+                    <div class="product-price">$110</div>
+                    <div class="product-availability out-of-stock">Out of Stock</div>
+                    <div class="color-options">
+                        <div class="color-dot" style="background: #9b59b6"></div>
+                        <div class="color-dot" style="background: #e67e22"></div>
+                    </div>
+                    <button class="buy-btn" disabled>Notify Me</button>
                 </div>
-                <button class="buy-btn" disabled>Notify Me</button>
-            </div>
+            </a>
             
-            <div class="product-card">
-                <div class="product-image">👟</div>
-                <div class="product-name">Converse Chuck Taylor</div>
-                <div class="product-price">$65</div>
-                <div class="product-availability">In Stock</div>
-                <div class="color-options">
-                    <div class="color-dot" style="background: #000"></div>
-                    <div class="color-dot" style="background: #fff"></div>
-                    <div class="color-dot" style="background: #e74c3c"></div>
-                    <div class="color-dot" style="background: #f1c40f"></div>
+            <a href="details.html" style="text-decoration: none; color: inherit;">
+                <div class="product-card">
+                    <div class="product-image">👟</div>
+                    <div class="product-name">Converse Chuck Taylor</div>
+                    <div class="product-price">$65</div>
+                    <div class="product-availability">In Stock</div>
+                    <div class="color-options">
+                        <div class="color-dot" style="background: #000"></div>
+                        <div class="color-dot" style="background: #fff"></div>
+                        <div class="color-dot" style="background: #e74c3c"></div>
+                        <div class="color-dot" style="background: #f1c40f"></div>
+                    </div>
+                    <button class="buy-btn">Add to Cart</button>
                 </div>
-                <button class="buy-btn">Add to Cart</button>
-            </div>
+            </a>
             
-            <div class="product-card">
-                <div class="product-image">👟</div>
-                <div class="product-name">Vans Old Skool</div>
-                <div class="product-price">$60</div>
-                <div class="product-availability">In Stock</div>
+            <a href="details.html" style="text-decoration: none; color: inherit;">
+                <div class="product-card">
+                    <div class="product-image">👟</div>
+                    <div class="product-name">Vans Old Skool</div>
+                    <div class="product-price">$60</div>
+                    <div class="product-availability">In Stock</div>
                 <div class="color-options">
                     <div class="color-dot" style="background: #000"></div>
                     <div class="color-dot" style="background: #fff"></div>
@@ -580,11 +609,29 @@
         document.querySelector('.carousel').addEventListener('mouseenter', stopAutoSlide);
         document.querySelector('.carousel').addEventListener('mouseleave', startAutoSlide);
         
+        // Animate product cards on scroll with sequential timing
+        const productCards = document.querySelectorAll('.product-card');
+        const productGrid = document.querySelector('.product-grid');
+        
+        const productObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    productCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('animate');
+                        }, index * 150);
+                    });
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        productObserver.observe(productGrid);
+        
         // Animate brands on scroll
         const brandItems = document.querySelectorAll('.brand-item');
         const footer = document.querySelector('footer');
         
-        const observer = new IntersectionObserver((entries) => {
+        const brandObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     brandItems.forEach(item => {
@@ -594,7 +641,7 @@
             });
         }, { threshold: 0.3 });
         
-        observer.observe(footer);
+        brandObserver.observe(footer);
     </script>
 </body>
 </html>
