@@ -1,0 +1,644 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background: #fff;
+    color: #333;
+}
+
+.page {
+    min-height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.chatbot-container {
+    text-align: center;
+    color: white;
+}
+
+.chat-bubble {
+    background: #333;
+    padding: 1rem;
+    border-radius: 20px;
+    margin-top: 1rem;
+}
+
+/* Description Page */
+.description-page {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+#mottoVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Ecommerce Page */
+.ecommerce-page {
+    background: #fff;
+    min-height: 100vh;
+    color: #333;
+}
+
+.ecommerce-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.ecommerce-navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.ecommerce-navbar .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.ecommerce-navbar .nav-links a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.ecommerce-navbar .nav-links a:hover {
+    color: #4CAF50;
+}
+
+.shoes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 3rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.shoe-postcard {
+    background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.shoe-postcard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.shoe-postcard img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.postcard-content {
+    padding: 1.5rem;
+}
+
+.postcard-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.postcard-content p {
+    color: #bbb;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.postcard-content .price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.brand-section {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 3rem 5%;
+    background: #f8f9fa;
+}
+
+.brand-icon {
+    width: 80px;
+    height: 80px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.brand-icon:hover {
+    transform: scale(1.2);
+    background: #4CAF50;
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(76,175,80,0.3);
+}
+
+.brand-icon:hover::after {
+    content: attr(data-brand);
+    position: absolute;
+    top: -40px;
+    background: #000;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* Profile Page */
+.profile-page {
+    background: #1a1a1a;
+    min-height: 100vh;
+    color: #e0e0e0;
+}
+
+.profile-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: #2a2a2a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.profile-nav .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-item {
+    padding: 0.8rem 1.5rem;
+    background: #333;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    transform: translateY(0);
+}
+
+.nav-item:hover {
+    background: #4CAF50;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.nav-item.active {
+    background: #4CAF50;
+    transform: scale(1.05);
+}
+
+.profile-container {
+    padding: 3rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: #2a2a2a;
+    border-radius: 15px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    background: #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.profile-info h2 {
+    margin: 0 0 0.5rem 0;
+    color: #fff;
+}
+
+.profile-info p {
+    margin: 0.2rem 0;
+    color: #bbb;
+}
+
+.profile-section {
+    background: #2a2a2a;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.profile-section h3 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.order-item, .wishlist-item, .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #333;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s;
+}
+
+.order-item:hover, .wishlist-item:hover, .cart-item:hover {
+    transform: translateX(10px);
+}
+
+.wishlist-item img, .cart-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.status.delivered {
+    background: #4CAF50;
+    color: #fff;
+}
+
+.status.shipped {
+    background: #FF9800;
+    color: #fff;
+}
+
+.remove-btn {
+    background: #f44336;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.remove-btn:hover {
+    background: #d32f2f;
+}
+
+.charts-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.chart-box {
+    background: #333;
+    padding: 1.5rem;
+    border-radius: 10px;
+    height: 300px;
+}
+
+@media (max-width: 768px) {
+    .shoes-container {
+        grid-template-columns: 1fr;
+        padding: 2rem 3%;
+    }
+    
+    .ecommerce-navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .brand-section {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .brand-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.motto-content {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    max-width: 800px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.motto {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    background: white;
+    color: #333;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+}
+
+/* Home Page */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #667eea;
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: white;
+    text-align: center;
+}
+
+/* Shoe Collection */
+.shoe-collection {
+    padding: 4rem 5%;
+    background: #fff;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+.shoe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.shoe-card {
+    background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.shoe-card:hover {
+    transform: translateY(-10px);
+}
+
+.shoe-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-text {
+    padding: 1.5rem;
+}
+
+.card-text h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.description {
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* Brand Icons */
+.brand-icons-section {
+    padding: 4rem 5%;
+    background: #fff;
+}
+
+.brand-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.brand-icon {
+    height: 60px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.brand-icon:hover {
+    opacity: 1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 3%;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+    
+    .shoe-collection,
+    .brand-icons-section {
+        padding: 3rem 3%;
+    }
+    
+    .shoe-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .brand-carousel {
+        gap: 2rem;
+    }
+    
+    .brand-icon {
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .nav-links {
+        gap: 0.5rem;
+    }
+    
+    .motto-content {
+        padding: 1rem;
+    }
+    
+    .shoe-collection,
+    .brand-icons-section {
+        padding: 2rem 1rem;
+    }
+    
+    .card-text {
+        padding: 1rem;
+    }
+    
+    .brand-carousel {
+        gap: 1rem;
+    }
+}

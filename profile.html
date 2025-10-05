@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeStore - Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="profile-nav">
+        <div class="logo">ShoeStore Profile</div>
+        <div class="nav-menu">
+            <div class="nav-item active" data-section="profile">Profile</div>
+            <div class="nav-item" data-section="orders">Orders</div>
+            <div class="nav-item" data-section="wishlist">Wishlist</div>
+            <div class="nav-item" data-section="cart">Cart</div>
+            <div class="nav-item" data-section="analytics">Analytics</div>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <div id="profile-section" class="profile-section">
+            <div class="profile-header" data-aos="fade-down">
+                <div class="profile-avatar">JD</div>
+                <div class="profile-info">
+                    <h2>John Doe</h2>
+                    <p>john.doe@email.com</p>
+                    <p>+1 (555) 123-4567</p>
+                    <button class="edit-btn">Edit Profile</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="orders-section" class="profile-section hidden">
+            <h3>Order History</h3>
+            <div class="order-item" data-aos="fade-up">
+                <div class="order-details">
+                    <span class="order-name">Performance Runner</span>
+                    <span class="order-date">March 15, 2024</span>
+                </div>
+                <span class="order-price">$199.99</span>
+                <span class="status delivered">Delivered</span>
+            </div>
+            <div class="order-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="order-details">
+                    <span class="order-name">Trail Master</span>
+                    <span class="order-date">March 10, 2024</span>
+                </div>
+                <span class="order-price">$179.99</span>
+                <span class="status shipped">Shipped</span>
+            </div>
+            <div class="order-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="order-details">
+                    <span class="order-name">Speed Demon</span>
+                    <span class="order-date">February 28, 2024</span>
+                </div>
+                <span class="order-price">$249.99</span>
+                <span class="status processing">Processing</span>
+            </div>
+        </div>
+
+        <div id="wishlist-section" class="profile-section hidden">
+            <h3>Wishlist</h3>
+            <div class="wishlist-grid">
+                <div class="wishlist-item" data-aos="fade-up">
+                    <img src="shoe4.webp" alt="Speed Demon">
+                    <div class="item-info">
+                        <h4>Speed Demon</h4>
+                        <span class="price">$249.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="wishlist-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="shoe5.avif" alt="Comfort Elite">
+                    <div class="item-info">
+                        <h4>Comfort Elite</h4>
+                        <span class="price">$169.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="wishlist-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="shoe6.avif" alt="Urban Explorer">
+                    <div class="item-info">
+                        <h4>Urban Explorer</h4>
+                        <span class="price">$189.99</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cart-section" class="profile-section hidden">
+            <h3>Shopping Cart</h3>
+            <div class="cart-item" data-aos="fade-up">
+                <img src="shoe6.avif" alt="Urban Explorer">
+                <div class="cart-details">
+                    <h4>Urban Explorer</h4>
+                    <span class="size">Size: 10</span>
+                    <div class="quantity">
+                        <button class="qty-btn">-</button>
+                        <span>1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                </div>
+                <span class="cart-price">$189.99</span>
+                <button class="remove-btn">Remove</button>
+            </div>
+            <div class="cart-total">
+                <h4>Total: $189.99</h4>
+                <button class="checkout-btn">Checkout</button>
+            </div>
+        </div>
+
+        <div id="analytics-section" class="profile-section hidden">
+            <h3>Your Analytics</h3>
+            <div class="charts-container">
+                <div class="chart-box" data-aos="fade-up">
+                    <h4>Monthly Purchases</h4>
+                    <canvas id="purchaseChart"></canvas>
+                </div>
+                <div class="chart-box" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Website Visits</h4>
+                    <canvas id="visitChart"></canvas>
+                </div>
+                <div class="chart-box" data-aos="fade-up" data-aos-delay="400">
+                    <h4>Returns & Exchanges</h4>
+                    <canvas id="returnsChart"></canvas>
+                </div>
+                <div class="chart-box" data-aos="fade-up" data-aos-delay="600">
+                    <h4>Category Preferences</h4>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        AOS.init();
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const section = this.dataset.section;
+                
+                document.querySelectorAll('.profile-section').forEach(s => s.classList.add('hidden'));
+                document.getElementById(section + '-section').classList.remove('hidden');
+                
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                this.classList.add('active');
+                
+                if (section === 'analytics') {
+                    setTimeout(initCharts, 300);
+                }
+                
+                AOS.refresh();
+            });
+        });
+
+        function initCharts() {
+            const purchaseCtx = document.getElementById('purchaseChart').getContext('2d');
+            new Chart(purchaseCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Purchases',
+                        data: [2, 4, 1, 3, 5, 2],
+                        backgroundColor: '#4CAF50'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#fff' } } },
+                    scales: { 
+                        y: { ticks: { color: '#fff' } },
+                        x: { ticks: { color: '#fff' } }
+                    }
+                }
+            });
+
+            const visitCtx = document.getElementById('visitChart').getContext('2d');
+            new Chart(visitCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Visits',
+                        data: [12, 19, 8, 15],
+                        borderColor: '#2196F3',
+                        backgroundColor: 'rgba(33, 150, 243, 0.1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#fff' } } },
+                    scales: { 
+                        y: { ticks: { color: '#fff' } },
+                        x: { ticks: { color: '#fff' } }
+                    }
+                }
+            });
+
+            const returnsCtx = document.getElementById('returnsChart').getContext('2d');
+            new Chart(returnsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Returns', 'Exchanges', 'Satisfied'],
+                    datasets: [{
+                        data: [2, 1, 15],
+                        backgroundColor: ['#f44336', '#FF9800', '#4CAF50']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#fff' } } }
+                }
+            });
+
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            new Chart(categoryCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Running', 'Casual', 'Sports', 'Hiking', 'Fashion'],
+                    datasets: [{
+                        label: 'Preferences',
+                        data: [9, 6, 7, 4, 5],
+                        borderColor: '#9C27B0',
+                        backgroundColor: 'rgba(156, 39, 176, 0.2)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#fff' } } },
+                    scales: { 
+                        r: { 
+                            ticks: { color: '#fff' },
+                            pointLabels: { color: '#fff' }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
